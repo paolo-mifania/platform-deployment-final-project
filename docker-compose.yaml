@@ -7,7 +7,7 @@ services:
         ports:
             - "8000:80"
         volumes:
-            - ./src:/app/scr
+            - ./src:/app/src
             - ./templates:/app/templates
             - ./public:/app/public
         environment:
@@ -26,29 +26,29 @@ services:
             retries: 3
             start_period: 10s
 
-#     db:
-#         image: mysql:8.0.32
-#         container_name: platform_final-db
-#         environment:
-#             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#             MYSQL_DATABASE: ${MYSQL_DATABASE}
-#             MYSQL_USER: ${MYSQL_USER}
-#             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-#         ports:
-#             - "${MYSQL_PORT}:3306"
-#         volumes:
-#             - db_data:/var/lib/mysql
-#         networks:
-#             - platform_final-network
-#         healthcheck:
-#             test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-#             interval: 10s
-#             timeout: 5s
-#             retries: 5
-#             start_period: 10s
+    db:
+        image: mysql:8.0.32
+        container_name: platform_final-db
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - "${MYSQL_PORT}:3306"
+        volumes:
+            - db_data:/var/lib/mysql
+        networks:
+            - platform_final-network
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
 
-# volumes:
-#     db_data:
+volumes:
+    db_data:
 
 networks:
     platform_final-network:
